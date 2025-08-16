@@ -30,7 +30,22 @@ function TodayItem({ activity }) {
       {status === "unconfirmed" && <Tag type="green">Arriving</Tag>}
       {status === "checked-in" && <Tag type="blue">Departing</Tag>}
 
-      <Flag src={guest.countryFlag} alt={`Flag of ${guest.nationality}`} />
+      {guest.countryFlag ? (
+        <Flag
+          src={guest.countryFlag}
+          alt={`Flag of ${guest.nationality || "Unknown"}`}
+        />
+      ) : (
+        <div
+          style={{
+            width: "2rem",
+            height: "1.5rem",
+            backgroundColor: "var(--color-grey-200)",
+            borderRadius: "var(--border-radius-tiny)",
+            border: "1px solid var(--color-grey-100)",
+          }}
+        />
+      )}
       <Guest>{guest.fullName}</Guest>
       <div>{numNights} nights</div>
 
